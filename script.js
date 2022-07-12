@@ -28,15 +28,18 @@ const perPersonTotal = document.getElementById("perPersonTotal");
 const calculateBill = () => {
   //TODO:Set the tip percentage
   //TODO: Calculate tip percentage value
-    const tipPercentage = Number(tipInput.value / 100);
+  const tipPercentage = Number(tipInput.value / 100);
+  const tipAmount = Number(billTotalInput.value) * tipPercentage;
   //TODO: Sum the tip percentage value with the billTotalInput
-  const totalSum = Number(billTotalInput.value) + tipPercentage;
+  const totalSum = Number(billTotalInput.value) + tipAmount;
   console.log(totalSum);
   //IS NOT DONE YET
   //FIXME: Cant get the number of person 
-    const totalBill = totalSum / perPersonTotal.value;
+  let numberOfPeople = Number(numberOfPeopleDiv.innerText);
+  totalBill = totalSum / numberOfPeople;
     // console.log(totalBill);
   //TODO: Display per person total
+  perPersonTotal.innerText = totalBill;
 }
 
 //TODO:Increase people value and display it using DOM
@@ -47,9 +50,18 @@ const increasePeople = () => {
   //TODO:Use conditional to added the number
   let numberOfPeople = Number(numberOfPeopleDiv.innerText);
   numberOfPeople +=  1;
-  console.log(numberOfPeopleDiv.innerText = numberOfPeople);
+  numberOfPeopleDiv.innerText = numberOfPeople;
 
   //TODO:Display the value using the DOM
 }
 
+const decreasePeople = () => {
+  let numberOfPeople = Number(numberOfPeopleDiv.innerText);
+  numberOfPeople -= 1;
+  numberOfPeopleDiv.innerText = numberOfPeople;
+  //TODO: Prevent to fall to 0 people and display negative value
+  if (numberOfPeople <= 0) {
+     numberOfPeopleDiv.innerText = 1;
+  }
+}
 
